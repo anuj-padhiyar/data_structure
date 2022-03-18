@@ -24,6 +24,7 @@ BST* insert(BST* node,int value){
         node->data = value;
         node->right = NULL;
         node->left = NULL;
+        return node;
     }
     if(value > node->data)
         node->right = insert(node->right,value);
@@ -35,7 +36,6 @@ BST* insert(BST* node,int value){
 BST* delete(BST* node,int value){
     BST* temp;
     if(node == NULL){
-        printf("No Record Found");
         return node;
     }
     if(value < node->data){
@@ -194,8 +194,11 @@ void main(){
                 if(check_tree(root)){
                     printf("Enter Data Of Node For Delete : ");
                     scanf("%d",&value);
-                    if(delete(root,value) != NULL)
+                    if(search(root,value) != NULL){
+                        delete(root,value);
                         printf("Deleted");
+                    }else
+                        printf("No Record Found !!");
                 }
                 break;
 
@@ -268,10 +271,8 @@ void main(){
                 break;
 
             case 12:
-                exit(0);
-                break;
-
             default:
+                exit(0);
                 break;
         }
     }
